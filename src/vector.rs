@@ -3,7 +3,7 @@ use std::fmt::Display;
 use std::ops::{Add, Mul, Sub};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Vector3D<T> {
+pub struct Vector3D<T: Float> {
     pub x: T,
     pub y: T,
     pub z: T,
