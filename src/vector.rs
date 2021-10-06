@@ -72,7 +72,10 @@ impl<T: Float> Sub for Vector3D<T> {
     }
 }
 
-impl<T: Float + Display> Display for Vector3D<T> {
+impl<T> Display for Vector3D<T>
+where
+    T: Float + Display,
+{
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "x: {}\ny: {}\nz: {}", self.x, self.y, self.z)
     }
