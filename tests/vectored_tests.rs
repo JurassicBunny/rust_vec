@@ -72,9 +72,9 @@ fn test_subtraction() {
 #[test]
 fn test_scalar() {
     let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let scalr = 2.0;
+    let scalar = 2.0;
 
     let result = Vector3D::new(2.0, 4.0, 6.0);
 
-    assert_eq!(scalr * vector, result);
+    assert_eq!(scalar * vector, result);
 }
