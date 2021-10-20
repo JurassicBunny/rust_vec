@@ -50,6 +50,17 @@ impl Mul<Vector3D<f64>> for f64 {
     }
 }
 
+impl Mul<Vector3D<f32>> for f32 {
+    type Output = Vector3D<f32>;
+    fn mul(self, rhs: Vector3D<f32>) -> Self::Output {
+        Vector3D {
+            x: rhs.x * self,
+            y: rhs.y * self,
+            z: rhs.z * self,
+        }
+    }
+}
+
 impl<T: Float> Add for Vector3D<T> {
     type Output = Self;
     fn add(self, rhs: Self) -> Self::Output {
