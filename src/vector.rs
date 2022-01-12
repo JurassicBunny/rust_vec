@@ -23,8 +23,8 @@ impl<T: Float> Vector3D<T> {
     }
 
     pub fn normalize(self) -> Self {
-        let scaler = self.norm();
-        self * scaler.recip()
+        let scalar = self.norm();
+        self * scalar.recip()
     }
 }
 
