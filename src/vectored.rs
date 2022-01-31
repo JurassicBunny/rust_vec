@@ -24,25 +24,24 @@ pub trait Vectored<T: Float> {
     }
 }
 
-#[macro_export]
-macro_rules! vectored {
+macro_rules! make_vectored {
     ($expression:ident) => {
         #[derive(Debug, Clone, Copy)]
-        pub struct $expression<T: num::Float>(crate::vector::Vector3D<T>);
+        pub struct $expression<T: num::Float>(Vector3D<T>);
 
         impl<T: num::Float> $expression<T> {
             #[allow(dead_code)]
             pub fn new(x: T, y: T, z: T) -> Self {
-                let vector = crate::vector::Vector3D::new(x, y, z);
+                let vector = Vector3D::new(x, y, z);
                 Self(vector)
             }
         }
 
         impl<T: num::Float> Vectored<T> for $expression<T> {
-            fn as_vec(&self) -> crate::vector::Vector3D<T> {
+            fn as_vec(&self) -> Vector3D<T> {
                 self.0
             }
-            fn set_vec(&mut self, vec: crate::vector::Vector3D<T>) {
+            fn set_vec(&mut self, vec: Vector3D<T>) {
                 self.0 = vec;
             }
         }
@@ -50,7 +49,7 @@ macro_rules! vectored {
         impl<T, U> std::ops::Add<U> for $expression<T>
         where
             T: num::Float,
-            U: crate::vectored::Vectored<T>,
+            U: Vectored<T>,
         {
             type Output = $expression<T>;
             fn add(mut self, rhs: U) -> Self::Output {
@@ -75,8 +74,8 @@ macro_rules! vectored {
     };
 }
 
-vectored!(Acceleration);
-vectored!(Force);
-vectored!(Momentum);
-vectored!(Position);
-vectored!(Velocity);
+make_vectored!(Acceleration);
+make_vectored!(Force);
+make_vectored!(Momentum);
+make_vectored!(Position);
+make_vectored!(Velocity);
