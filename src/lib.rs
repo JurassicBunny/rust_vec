@@ -1,6 +1,5 @@
-pub use crate::vector::Acceleration;
-pub use crate::vector::Vector3D;
-pub use crate::vector::Vectored;
-pub use crate::vector::Velocity;
+pub use crate::vectored::Vectored;
+pub use crate::vectored::{Acceleration, Force, Momentum, Position, Velocity};
 
-mod vector;
+pub mod vector;
+mod vectored;
