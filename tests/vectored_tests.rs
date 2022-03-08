@@ -8,7 +8,7 @@ fn test_new() {
         Vector3D {
             x: 1.0,
             y: 2.0,
-            z: 3.0
+            z: 3.0,
         },
         vector
     );
