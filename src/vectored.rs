@@ -26,7 +26,7 @@ pub trait Vectored<T: Float> {
 
 macro_rules! make_vectored {
     ($expression:ident) => {
-        #[derive(Debug, Clone, Copy)]
+        #[derive(Debug, Clone, Copy, Eq, PartialEq)]
         pub struct $expression<T: num::Float>(Vector3D<T>);
 
         impl<T: num::Float> $expression<T> {
@@ -67,6 +67,18 @@ macro_rules! make_vectored {
             type Output = $expression<T>;
             fn sub(mut self, rhs: U) -> Self::Output {
                 let result = self.as_vec() - rhs.as_vec();
+                self.set_vec(result);
+                self
+            }
+        }
+
+        impl<T> std::ops::Mul<T> for $expression<T>
+        where
+            T: num::Float,
+        {
+            type Output = $expression<T>;
+            fn mul(mut self, rhs: T) -> Self {
+                let result = self.as_vec() * rhs;
                 self.set_vec(result);
                 self
             }

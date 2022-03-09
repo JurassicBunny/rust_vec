@@ -1,4 +1,5 @@
 use vectored::Vector3D;
+use vectored::{Acceleration, Vectored};
 
 #[test]
 fn test_new() {
@@ -24,8 +25,8 @@ fn test_new() {
 
 #[test]
 fn test_norm() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let second_vec = Acceleration::new(2.0, 3.0, 4.0);
 
     assert_eq!(vector.norm(), 14.0_f64.sqrt());
     assert_eq!(second_vec.norm(), 29.0_f64.sqrt());
@@ -33,8 +34,8 @@ fn test_norm() {
 
 #[test]
 fn test_sqr_norm() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let second_vec = Acceleration::new(2.0, 3.0, 4.0);
 
     assert_eq!(vector.sqr_norm(), 14.0);
     assert_eq!(second_vec.sqr_norm(), 29.0);
@@ -42,8 +43,8 @@ fn test_sqr_norm() {
 
 #[test]
 fn test_normalize() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let second_vec = Acceleration::new(2.0, 3.0, 4.0);
 
     assert_eq!(vector.normalize().norm(), 1.0);
     assert_eq!(second_vec.normalize().norm(), 1.0);
@@ -51,30 +52,30 @@ fn test_normalize() {
 
 #[test]
 fn test_addition() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let second_vec = Acceleration::new(2.0, 3.0, 4.0);
 
-    let result = Vector3D::new(3.0, 5.0, 7.0);
+    let result = Acceleration::new(3.0, 5.0, 7.0);
 
     assert_eq!(vector + second_vec, result);
 }
 
 #[test]
 fn test_subtraction() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let second_vec = Acceleration::new(2.0, 3.0, 4.0);
 
-    let result = Vector3D::new(-1.0, -1.0, -1.0);
+    let result = Acceleration::new(-1.0, -1.0, -1.0);
 
     assert_eq!(vector - second_vec, result);
 }
 
 #[test]
 fn test_scalar() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
     let scalar = 2.0;
 
-    let result = Vector3D::new(2.0, 4.0, 6.0);
+    let result = Acceleration::new(2.0, 4.0, 6.0);
 
-    assert_eq!(scalar * vector, result);
+    assert_eq!(vector * scalar, result);
 }
