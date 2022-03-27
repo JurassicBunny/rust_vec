@@ -55,4 +55,5 @@ fn test_scalar() {
     let result = Acceleration::new(2.0, 4.0, 6.0);
 
     assert_eq!(vector * scalar, result);
+    assert_eq!(scalar * vector, result);
 }

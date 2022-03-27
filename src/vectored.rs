@@ -83,6 +83,24 @@ macro_rules! make_vectored {
                 self
             }
         }
+
+        impl std::ops::Mul<$expression<f64>> for f64 {
+            type Output = $expression<f64>;
+            fn mul(self, mut rhs: $expression<f64>) -> Self::Output {
+                let result = self * rhs.as_vec();
+                rhs.set_vec(result);
+                rhs
+            }
+        }
+
+        impl std::ops::Mul<$expression<f32>> for f32 {
+            type Output = $expression<f32>;
+            fn mul(self, mut rhs: $expression<f32>) -> Self::Output {
+                let result = self * rhs.as_vec();
+                rhs.set_vec(result);
+                rhs
+            }
+        }
     };
 }
 
