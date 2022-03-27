@@ -1,27 +1,4 @@
-use vectored::Vector3D;
 use vectored::{Acceleration, Vectored};
-
-#[test]
-fn test_new() {
-    let vector = Vector3D::new(1.0, 2.0, 3.0);
-    let second_vec = Vector3D::new(2.0, 3.0, 4.0);
-    assert_eq!(
-        Vector3D {
-            x: 1.0,
-            y: 2.0,
-            z: 3.0,
-        },
-        vector
-    );
-    assert_eq!(
-        Vector3D {
-            x: 2.0,
-            y: 3.0,
-            z: 4.0
-        },
-        second_vec
-    );
-}
 
 #[test]
 fn test_norm() {
