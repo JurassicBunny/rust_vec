@@ -30,7 +30,6 @@ macro_rules! make_vectored {
         pub struct $expression<T: num::Float>(Vector3D<T>);
 
         impl<T: num::Float> $expression<T> {
-            #[allow(dead_code)]
             pub fn new(x: T, y: T, z: T) -> Self {
                 let vector = Vector3D::new(x, y, z);
                 Self(vector)
