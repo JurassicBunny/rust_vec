@@ -4,6 +4,8 @@ use num::Float;
 pub trait Vectored<T: Float> {
     fn as_vec(&self) -> Vector3D<T>;
 
+    fn new(x: T, y: T, z: T) -> Self;
+
     fn set_vec(&mut self, vec: Vector3D<T>);
 
     fn sqr_norm(&self) -> T {
@@ -29,19 +31,33 @@ macro_rules! make_vectored {
         #[derive(Debug, Clone, Copy, Eq, PartialEq)]
         pub struct $expression<T: num::Float>(Vector3D<T>);
 
-        impl<T: num::Float> $expression<T> {
-            pub fn new(x: T, y: T, z: T) -> Self {
+        impl<T: num::Float> Vectored<T> for $expression<T> {
+            fn new(x: T, y: T, z: T) -> Self {
                 let vector = Vector3D::new(x, y, z);
                 Self(vector)
             }
-        }
 
-        impl<T: num::Float> Vectored<T> for $expression<T> {
             fn as_vec(&self) -> Vector3D<T> {
                 self.0
             }
             fn set_vec(&mut self, vec: Vector3D<T>) {
                 self.0 = vec;
+            }
+        }
+
+        impl<T> $expression<T>
+        where
+            T: num::Float,
+        {
+            pub fn as_vectype<U>(self) -> U
+            where
+                U: crate::vectored::Vectored<T>,
+            {
+                let x = self.as_vec().x;
+                let y = self.as_vec().y;
+                let z = self.as_vec().z;
+
+                U::new(x, y, z)
             }
         }
 

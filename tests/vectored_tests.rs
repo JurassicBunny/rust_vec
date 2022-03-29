@@ -1,4 +1,4 @@
-use vectored::{Acceleration, Vectored};
+use vectored::{Acceleration, Vectored, Velocity};
 
 #[test]
 fn test_norm() {
@@ -56,4 +56,16 @@ fn test_scalar() {
 
     assert_eq!(vector * scalar, result);
     assert_eq!(scalar * vector, result);
+}
+
+#[test]
+fn test_as_vectype() {
+    let vector = Acceleration::new(1.0, 2.0, 3.0);
+    let answer = Velocity::new(1.0, 2.0, 3.0);
+
+    let result = vector.as_vectype::<Velocity<f64>>();
+    let snd_result = result.as_vectype::<Acceleration<f64>>();
+
+    assert_eq!(answer, result);
+    assert_eq!(vector, snd_result);
 }
