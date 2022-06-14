@@ -1,8 +1,9 @@
 use num::Float;
+use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 use std::ops::{Add, Mul, Sub};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
 pub struct Vector3D<T: Float> {
     pub x: T,
     pub y: T,

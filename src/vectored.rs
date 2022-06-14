@@ -1,5 +1,6 @@
 use crate::vector::Vector3D;
 use num::Float;
+use serde::{Deserialize, Serialize};
 
 pub trait Vectored<T: Float> {
     fn as_vec(&self) -> Vector3D<T>;
@@ -26,7 +27,7 @@ pub trait Vectored<T: Float> {
 
 macro_rules! make_vectored {
     ($expression:ident) => {
-        #[derive(Debug, Clone, Copy, Eq, PartialEq)]
+        #[derive(Debug, Clone, Copy, Eq, PartialEq, Deserialize, Serialize)]
         pub struct $expression<T: num::Float>(Vector3D<T>);
 
         impl<T: num::Float> $expression<T> {
